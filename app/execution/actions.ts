@@ -192,7 +192,7 @@ export async function completeStageProgressAction(
     .select('stage')
     .eq('project_id', projectId);
 
-  const completedStages = new Set(existingProgress?.map((p) => p.stage) || []);
+  const completedStages = new Set((existingProgress as { stage: string }[] | null)?.map((p) => p.stage) || []);
   const currentIndex = ORDERED_STAGES.indexOf(stage);
 
   // Verify all previous stages are completed
@@ -266,7 +266,7 @@ export async function submitExecutionCompletionAction(
     .select('stage')
     .eq('project_id', projectId);
 
-  const completedStages = new Set(existingProgress?.map((p) => p.stage) || []);
+  const completedStages = new Set((existingProgress as { stage: string }[] | null)?.map((p) => p.stage) || []);
 
   for (const s of ORDERED_STAGES) {
     if (!completedStages.has(s)) {
