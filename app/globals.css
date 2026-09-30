@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: #ffffff;
+    --surface-soft: #f8fafc;
+    --surface-strong: #e0e2e6;
+    --surface-dark: #181d26;
+    --surface-dark-elevated: #1d1f25;
+    
+    --ink: #181d26;
+    --ink-body: #333840;
+    --ink-muted: #64748b;
+    --hairline: #e2e8f0;
+    --border-strong: #9297a0;
+
+    --signature-coral: #aa2d00;
+    --signature-forest: #0a2e0e;
+    --signature-cream: #f5e9d4;
+    --signature-peach: #fcab79;
+    --signature-mint: #a8d8c4;
+    --signature-yellow: #f4d35e;
+    --signature-mustard: #d9a441;
+
+    --link: #1b61c9;
+  }
+
+  body {
+    font-family: var(--font-sans), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink-body);
+    background-color: var(--surface-soft);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Airtable Design System Component Utilities */
+.card-airtable,
+.card-industrial {
+  background-color: #ffffff;
+  border: 1px solid #e8edf2;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(24, 29, 38, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-airtable:hover,
+.card-industrial:hover {
+  border-color: #d1d9e0;
+  box-shadow: 0 4px 12px 0 rgba(24, 29, 38, 0.06);
+}
+
+.card-signature-cream {
+  background-color: #fdfbf7;
+  border: 1px solid #f5e9d4;
+  border-radius: 10px;
+}
+
+.card-signature-coral {
+  background-color: #aa2d00;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.card-signature-forest {
+  background-color: #0a2e0e;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+/* Airtable Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #181d26;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease-in-out;
+  border: 1px solid #181d26;
+  box-shadow: 0 1px 2px 0 rgba(24, 29, 38, 0.08);
+}
+.btn-primary:hover {
+  background-color: #0d1218;
+  border-color: #0d1218;
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #181d26;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 1px 2px 0 rgba(24, 29, 38, 0.02);
+}
+.btn-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.btn-secondary-on-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #181d26;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+.btn-secondary-on-dark:hover {
+  background-color: #f8fafc;
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #1b61c9;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+.btn-accent:hover {
+  background-color: #1a3866;
+}
+
+/* Status & SLA Badges */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  line-height: 1.25;
+}
+
+.badge-sla-ok {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.badge-sla-warn {
+  background-color: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.badge-sla-danger {
+  background-color: #fff0eb;
+  color: #aa2d00;
+  border: 1px solid #fcab79;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Inputs & Form Controls */
+.input-airtable {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #181d26;
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8125rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-airtable:focus {
+  outline: none;
+  border-color: #181d26;
+  box-shadow: 0 0 0 1px #181d26;
+}
+.input-airtable::placeholder {
+  color: #9297a0;
+}
+
+/* Data Table Precision */
+.table-airtable {
+  width: 100%;
+  text-align: left;
+  font-size: 0.8125rem;
+  border-collapse: collapse;
+}
+
+.table-airtable th {
+  background-color: #f8fafc;
+  color: #6b7280;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid #e8edf2;
+  white-space: nowrap;
+}
+
+.table-airtable td {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #333840;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-airtable tr:hover td {
+  background-color: #fbfcfe;
+}
+
+/* Subtle Airtable Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================
+   Global Typography Softening
+   All h1-h3 explicitly set font-weight to
+   semibold (600) to prevent heavy rendering
+   from Tailwind font-bold (700) inheritance.
+   ========================================= */
+h1 { font-weight: 600; }
+h2 { font-weight: 600; }
+h3 { font-weight: 500; }
+h4 { font-weight: 500; }
+

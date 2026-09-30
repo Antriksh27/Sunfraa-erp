@@ -1,0 +1,17 @@
+{
+  "name": "Sunfraa ERP - Solar Operations Base",
+  "short_name": "Sunfraa ERP",
+  "description": "Turnkey Rooftop Solar Operations, Engineering, CAD & Statutory Liaisoning ERP",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#181d26",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
