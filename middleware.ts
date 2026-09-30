@@ -4,32 +4,43 @@ import { ROLE_NAV_CONFIG, isRouteAllowedForRole } from '@/lib/navigation';
 import { UserRole } from '@/types/database';
 
 export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  });
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return new NextResponse(
+      'Deployment Error: Missing Supabase Environment Variables (NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY) in Vercel settings. Please configure them in Project Settings -> Environment Variables.',
+      { status: 503, headers: { 'content-type': 'text/plain' } }
+    );
+  }
+
+  try {
+    let supabaseResponse = NextResponse.next({
+      request,
+    });
+
+    const supabase = createServerClient(
+      supabaseUrl,
+      supabaseAnonKey,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
+            cookiesToSet.forEach(({ name, value }) =>
+              request.cookies.set(name, value)
+            );
+            supabaseResponse = NextResponse.next({
+              request,
+            });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options)
+            );
+          },
         },
-        setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          );
-          supabaseResponse = NextResponse.next({
-            request,
-          });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
-        },
-      },
-    }
-  );
+      }
+    );
 
   const {
     data: { user },
@@ -92,7 +103,11 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return supabaseResponse;
+    return supabaseResponse;
+  } catch (error) {
+    console.error('Middleware execution error:', error);
+    return NextResponse.next({ request });
+  }
 }
 
 export const config = {
